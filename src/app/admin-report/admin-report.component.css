@@ -1,0 +1,7 @@
+body {
+    background-image: url('../../assets/pozadina_izvestaj.png');
+    background-size: cover;
+    background-size:100%;
+    background-position: bottom;
+    background-repeat: repeat-x;
+}

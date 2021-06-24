@@ -1,0 +1,125 @@
+<html>
+<nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link " href="admin">
+                    <h4>Početna strana</h4>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link active" role="button" (click)="func1()">
+                    <h4>Obavestenja</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a class="navbar-brand" href="admin">
+                    <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="kontakt_admin">
+                    <h4>Kontakt</h4>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" role="button" (click)="func()">
+                    <h4>Odjavi se</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<div id="page" *ngIf="opcija=='dodavanje'">
+    <h2 align="center" style="color: white;">Obavestenja</h2>
+    <table class="table" align="center" >
+
+        <tbody align="center">
+            <tr>
+                <td align="center">
+                    <h5 style="color: white;">Naziv</h5>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="text" name="naziv" [(ngModel)]="naziv">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <h5 style="color: white;">Tekst</h5>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <textarea cols="40" rows="5" name="tekst" [(ngModel)]="tekst"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <h5 style="color: white;"> Datum</h5>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="date" name="datum" [(ngModel)]="datum">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <button class="btn btn-danger" (click)="sacuvajNotifikaciju()">Sacuvaj</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br><br><br><br>
+</div>
+<div id="page" *ngIf="opcija=='pregled'">
+    <h2 align="center" style="color: white;">Obavestenja</h2>
+    <table class="table" align="center" bgcolor="white">
+        <thead align="center">
+            <tr>
+                <td align="center">
+                    Naziv
+                </td>
+                <td>
+                    Tekst
+                </td>
+                <td>
+                    Datum
+                </td>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <tr *ngFor='let n of notifications'>
+                <td align="center">
+                    <h5>{{n.title}}</h5>
+                </td>
+                <td>
+                    {{n.content}}
+                </td>
+                <td>
+                    Datum: {{n.date}}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+
+
+</html>

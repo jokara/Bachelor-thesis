@@ -1,0 +1,87 @@
+<html>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light nav justify-content-center bg-white">
+  <div class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link " href="home">
+          <h4>Početna strana</h4>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="vesti_neregistrovani">
+          <h4>Vesti</h4>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="obavestenja_neregistrovani">
+          <h4>Obavestenja</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
+      <li>
+        <a class="navbar-brand" href="#">
+          <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="kontakt">
+          <h4>Kontakt</h4>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" href="logovanje">
+          <h4>Logovanje</h4>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link " href="registracija">
+          <h4>Registracija</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div id="page">
+  <h2 align="center" style="color: white;">Obavestenja</h2>
+  <table class="table" align="center" bgcolor="white">
+    <thead align="center" >
+      <tr>
+        <td align="center">
+          <h4>Naziv</h4>
+        </td>
+        <td>
+          <h4>Tekst</h4>
+        </td>
+        <td>
+          <h4>Datum</h4>
+        </td>
+      </tr>
+    </thead>
+    <tbody align="center">
+      <tr *ngFor='let n of notifications'>
+        <td align="center">
+          <h5>{{n.title}}</h5>
+        </td>
+        <td>
+          {{n.content}}
+        </td>
+        <td>
+          Datum: {{n.date}}
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+</html>

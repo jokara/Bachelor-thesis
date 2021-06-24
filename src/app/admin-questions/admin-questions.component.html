@@ -1,0 +1,101 @@
+<html>
+<nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link active" href="admin">
+                    <h4>Početna strana</h4>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" role="button" (click)="func1()">
+                    <h4>Obavestenja</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a class="navbar-brand" href="admin">
+                    <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="kontakt_admin">
+                    <h4>Kontakt</h4>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" role="button" (click)="func()">
+                    <h4>Odjavi se</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<table class="table">
+    <thead align="center">
+        <tr>
+            <td>
+                <h4>Pitanje</h4>
+            </td>
+            <td>
+                <h4>Izaberi</h4>
+            </td>
+        </tr>
+    </thead>
+    <tbody align="center">
+        <tr *ngFor="let p of pitanjaZaOdgovore">
+            <td>
+                {{p.question}}
+            </td>
+            <td>
+                <button (click)="izaberi(p)" class="btn btn-info">Izaberi</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="opcija=='prikaz'">
+    <table class="table">
+        <tbody align="center">
+            <tr>
+                <td>
+                    <h3>Pitanje</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>{{pitanje.question}}</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Odgovor</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="odgovor" [(ngModel)]="odgovor">
+                </td>
+            </tr>
+            <tr >
+                <td>
+                    <button (click)="sacuvajIzmene()" class="btn btn-info">Sacuvaj</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</html>

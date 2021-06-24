@@ -1,0 +1,11 @@
+.nav-link {
+    color: green;
+    text-size-adjust: inherit;
+}
+
+body {
+    background-image: url('../../assets/pozadina.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size:100%;
+}

@@ -1,0 +1,642 @@
+<html>
+<nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link active" href="user">
+                    <h4>Početna strana</h4>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="obavestenja_lovac">
+                    <h4>Obavestenja</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a class="navbar-brand" href="user">
+                    <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="kontakt_lovac">
+                    <h4>Kontakt</h4>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" role="button" (click)="func()">
+                    <h4>Odjavi se</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<form>
+    <table class="table">
+        <tbody>
+            <tr align="center">
+                <td>
+                    <button class="btn btn-success" (click)="prikazVesti()">Pregled vesti</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="novaVest()">Postavljanje nove vesti</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="prikazPitanja()">Pregled pitanja</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="novoPitanje()">Postavljanje pitanja</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="pregledInfo()">Pregled informacija</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="pretraga()">Pretraga lovaca</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<br><br>
+
+<div *ngIf="opcija=='novaVest'" id="novaVest">
+    <h3 align="center">Molimo Vas da popunite formu</h3> <br><br>
+    <form>
+        <table class="table">
+            <tbody>
+                <tr align="center" height="80">
+                    <td>
+                        <div>
+                            Naziv vesti
+                        </div>
+                        <div style="width: 300px;">
+                            <ng-autocomplete [(ngModel)]="nazivVesti" name="nazivVesti">
+                            </ng-autocomplete>
+                        </div>
+                        <!--<input type="text" name="nazivVesti" [(ngModel)]="nazivVesti">-->
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+
+                    <td>
+                        <div>Tekst vesti</div>
+                        <textarea name="tekstVesti" [(ngModel)]="tekstVesti" rows="3" cols="35"></textarea>
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+
+                    <td>
+                        <div>
+                            Kategorija vesti
+                        </div>
+                        <div style="width: 300px;">
+
+                            <ng-autocomplete [data]="data" [searchKeyword]="keyword"
+                                [(ngModel)]="kategorijaVesti" name="kategorijaVesti" [itemTemplate]="itemTemplate"
+                                align="center">
+                            </ng-autocomplete>
+                            <ng-template #itemTemplate let-item style="width: 100px;">
+                                <a [innerHTML]="item.name"></a>
+                            </ng-template>
+                            <!--<input type="text" name="kategorijaVesti" [(ngModel)]="kategorijaVesti">-->
+                        </div>
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+
+                    <td>
+                        <div>Fotografija</div><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="file" (change)="onSelectFile($event)">
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+
+                    <td>
+                        <div>Autor</div>
+                        <div style="width: 300px;">
+                            <ng-autocomplete [(ngModel)]="autor" name="autor">
+                            </ng-autocomplete>
+                        </div>
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+
+                    <td>
+                        <div>Vidljivost</div>
+                        <input type="radio" name="vidljivost" value="svi" [(ngModel)]="vidljivost"> Svi
+                        <input type="radio" name="vidljivost" value="sviLovci" [(ngModel)]="vidljivost"> Svi lovci
+                        &nbsp; &nbsp;
+                        <input type="radio" name="vidljivost" value="svaUdruzenja" [(ngModel)]="vidljivost"> Sva
+                        udruzenja &nbsp;
+                        <input type="radio" name="vidljivost" value="grupa" [(ngModel)]="vidljivost"> Formiraj grupu
+                        <input type="radio" name="vidljivost" value="postojecaGrupa" [(ngModel)]="vidljivost"> Izaberi
+                        vec kreiranu
+                    </td>
+                </tr>
+                <tr *ngIf="vidljivost=='postojecaGrupa'" align="center">
+                    <td>
+                        <select name="nazivGrupe" [(ngModel)]="nazivGrupe">
+                            <option *ngFor="let g of grupeZaBiranje" value="{{g.name}}">{{g.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr *ngIf="vidljivost=='grupa'">
+                    <td>
+                        <div *ngIf="vidljivost=='grupa'">
+                            <h4 align="center">Formiranje grupe</h4>
+                            <br><br>
+                            <div align="center">
+                                Naziv grupe: <input type="text" name="nazivGrupe" [(ngModel)]="nazivGrupe">
+                            </div>
+                            <br><br>
+                            <table class="table">
+                                <thead>
+                                    <tr align="center">
+                                        <td>
+                                            Ime lovca/Udruzenja
+                                        </td>
+                                        <td>
+                                            Cekiraj
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let u of users; let i=index" align="center">
+                                        <td *ngIf="u.type=='hunter'">
+                                            {{u.name}} &nbsp; {{u.surname}}
+                                        </td>
+                                        <td *ngIf="u.type=='society'">
+                                            {{u.name}}
+                                        </td>
+                                        <td *ngIf="u.type=='hunter'">
+                                            <input type="checkbox" name="vidljivost" value="cekirano[i]"
+                                                [(ngModel)]="cekirano[i]">
+                                        </td>
+                                        <td *ngIf="u.type=='society'">
+                                            <input type="checkbox" name="vidljivost" value="cekirano[i]"
+                                                [(ngModel)]="cekirano[i]">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr align="center" *ngIf="poruka!=''">
+                    <td>
+                        <span style='color: red' align="center">
+                            {{poruka}}
+                        </span>
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+                    <td>
+                        <button class="btn btn-info" (click)="kreirajVest()">Kreiraj</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>
+
+<div *ngIf="opcija=='vestiPrikaz'" id="page">
+    <table class="table" align="center" *ngFor='let n of sveVestiZaKorisnika'>
+        <tbody align="center">
+            <tr bgcolor="#33A532">
+                <td>
+                    <h4>{{n.title}}</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Kategorija: {{n.category}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Tekst vesti:<br> {{n.content}}
+                </td>
+            </tr>
+            <tr *ngIf="n.picture!=''">
+                <td>
+                    <div *ngIf="n.picture!=''"><img [src]="n.picture" height="200px" width="300px"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Datum: {{n.date}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Autor: {{n.author}}
+                </td>
+            </tr>
+            <tr *ngIf="n.creator==ulogovan">
+                <td>
+                    <div *ngIf="n.visibility!='niko' && n.visibility!='obrisi'"><button class="btn btn-danger"
+                            (click)="arhivirajVest(n.title)">Arhiviraj</button></div> &nbsp;&nbsp;&nbsp;
+                    <div *ngIf="n.visibility!='obrisi'"><button class="btn btn-danger"
+                            (click)="obrisiVest(n.title)">Obrisi</button></div>
+                    <div *ngIf="n.visibility=='obrisi'">
+                        <h5 style="color: red;">Zahtev za brisanje generisan!</h5>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="opcija=='novoPitanje'" >
+    <form>
+        <table class="table" align="center">
+            <tbody align="center">
+                <tr bgcolor="yellow">
+                    <td>
+                        <h4>Unesite Vase pitanje</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="pitanjeNovo" [(ngModel)]="pitanjeNovo" cols="100" rows="6"></textarea>
+                    </td>
+                <tr>
+                    <td>
+                        <button class="btn btn-info" (click)="kreirajPitanje()">Posalji</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<div *ngIf="opcija=='prikazPitanja'">
+    <table class="table" align="center" *ngFor='let p of pitanja'>
+        <tbody align="center">
+            <tr bgcolor="#98FB98">
+                <td>
+                    <h3>{{p.question}}</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>Odgovor: {{p.answer}}</h5>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="page" *ngIf="opcija=='pregledInfo'" id="pregledInfo">
+    <br><br><br><br> <br>
+    <h4 align="center">Pregled i promena informacija</h4>
+    <h6 align="center" style="color: slateblue;">Oznacite informacije koje zelite da budu javne</h6>
+    <br><br>
+    <form>
+        <table class="table">
+            <tbody align="center">
+                <tr>
+                    <td>
+                        Ime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="name" [(ngModel)]="name">
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[0]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prezime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='surname' [(ngModel)]='surname' ng-pattern='[a-z]*'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[1]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Datum rodjenja:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='date' name='birthdate' [(ngModel)]='birthdate'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[2]">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Telefon:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='phoneNumber' [(ngModel)]='phoneNumber'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[3]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prebivaliste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                        <input type='text' name='residence' [(ngModel)]='residence'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[4]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Zemlja:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='country' [(ngModel)]='country'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[5]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Slike
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span *ngIf="picture1!=''"><img [src]="picture1" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="picture2!=''"><img [src]="picture2" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="picture3!=''"><img [src]="picture3" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Jedna slika:
+                        <input type="radio" name="brojSlika" value="1" [(ngModel)]="brojSlika"> <br><br>
+                        Dve slike:
+                        <input type="radio" name="brojSlika" value="2" [(ngModel)]="brojSlika"> <br><br>
+                        Tri slike:
+                        <input type="radio" name="brojSlika" value="3" [(ngModel)]="brojSlika"> <br><br>
+
+                        <div *ngIf="brojSlika==1">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[6]">
+                        </div>
+                        <div *ngIf="brojSlika==2">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile2($event)">&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[6]">
+                        </div>
+                        <div *ngIf="brojSlika==3">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile2($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile3($event)">&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[6]">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E-mail:&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='email' [(ngModel)]='email'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[7]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Lozinka:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='password' name='password' [(ngModel)]='password'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Potvrda lozinke:&nbsp;&nbsp;
+                        <input type='password' name='password2' [(ngModel)]='password2'>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Vrste zivotinja:&nbsp;
+                        <input type='text' name='animals' [(ngModel)]='animals'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[8]">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Omiljena lovista:
+                        <input type='text' name='favHuntGround' [(ngModel)]='favHuntGround'>
+                        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[9]">
+                    </td>
+                </tr>
+
+
+                <!--<tr align="center">
+            <td>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              Slika:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <input type="file" (change)="onSelectFile($event)">
+            </td>
+          </tr>-->
+                <tr height="60">
+                    <td>
+                        <button (click)='sacuvajIzmene()' class="btn btn-success">Sacuvaj</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+    <span style='color: red' align="center">
+        {{ErrorMessage}}
+    </span>
+
+    <br>
+</div>
+
+
+<div *ngIf="opcija=='pretraga'">
+    <h4 align="center">Pretraga</h4><br>
+
+    <table class="table">
+        <tbody align="center">
+            <tr>
+                <td>
+                    <button class="btn btn-info" (click)="pretraziSveLovce()">Svi lovci</button>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="pretraziSvaUdruzenja()">Sva udruzenja</button>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="pretragaPoImenuLovaca()">Po imenu lovca</button>
+                    <span *ngIf="unesiteImePretraga=='1'">
+                        <br><br>
+                        <h6>Unesite ime lovca</h6> <input type="text" value="imeLovcaPretraga"
+                            [(ngModel)]="imeLovcaPretraga"><br><br>
+                        <button class="btn btn-danger" (click)="pretraziLovcePoImenu()">Pretrazi</button>
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="pretragaPoImenuUdruzenja()">Po imenu udruzenja</button>
+                    <span *ngIf="unesiteImePretraga=='2'">
+                        <br><br>
+                        <h6>Unesite ime udruzenja</h6> <input type="text" value="imeLovcaPretraga"
+                            [(ngModel)]="imeLovcaPretraga"><br><br>
+                        <button class="btn btn-danger" (click)="pretraziUdruzenjaPoImenu()">Pretrazi</button>
+                    </span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div *ngIf="prikazPretraga=='mozeLovac'">
+        <table class="table" *ngFor='let us of korisniciZaPrikaz'>
+            <tbody align="center">
+                <tr>
+                    <td>
+                        <h3>Korisnik</h3>
+                    </td>
+                </tr>
+
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[0]==true">
+                    <td>
+                        Ime: {{us.name}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[1]==true">
+                    <td>
+                        Prezime: {{us.surname}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[2]==true">
+                    <td>
+                        Datum rodjenja: {{us.birthdate}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[3]==true">
+                    <td>
+                        Telefon: {{us.phoneNum}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[4]==true">
+                    <td>
+                        Prebivaliste: {{us.residence}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[5]==true">
+                    <td>
+                        Zemlja: {{us.country}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[6]==true">
+                    <td>
+                        Slike
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[6]==true">
+                    <td>
+                        <span *ngIf="us.picture1!=''"><img [src]="us.picture1" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="us.picture2!=''"><img [src]="us.picture2" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="us.picture3!=''"><img [src]="us.picture3" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[7]==true">
+                    <td>
+                        E-mail: {{us.email}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[8]==true">
+                    <td>
+                        Vrste zivotinja: {{us.animals}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[9]==true">
+                    <td>
+                        Omiljena lovista: {{us.favHuntGround}}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div *ngIf="prikazPretraga=='mozeUdruzenje'">
+        <table class="table" *ngFor='let us of korisniciZaPrikaz'>
+            <tbody align="center">
+                <tr>
+                    <td>
+                        <h3>Korisnik</h3>
+                    </td>
+                </tr>
+
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[0]==true">
+                    <td>
+                        Ime: {{us.name}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[1]==true">
+                    <td>
+                        Telefon: {{us.phoneNum}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[2]==true">
+                    <td>
+                        Prebivaliste: {{us.residence}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[3]==true">
+                    <td>
+                        Zemlja: {{us.country}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[4]==true">
+                    <td>
+                        Slike
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[4]==true">
+                    <td>
+                        <span *ngIf="us.picture1!=''"><img [src]="us.picture1" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="us.picture2!=''"><img [src]="us.picture2" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="us.picture3!=''"><img [src]="us.picture3" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[5]==true">
+                    <td>
+                        Broj clanova: {{us.numMembers}}
+                    </td>
+                </tr>
+                <tr *ngIf="us.publicInfo!=null && us.publicInfo[6]==true">
+                    <td>
+                        Clanarina: {{us.membership}}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<div>
+    <h3 align="center">Reklame</h3>
+    <table class="table" align="center">
+        <tbody align="center">
+
+
+            <tr>
+                <td *ngFor='let r of reklameZaKorisnika'>
+                    <div *ngIf="r.picture!=''"><img [src]="r.picture" height="300px" width="400px"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</html>

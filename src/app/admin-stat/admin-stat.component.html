@@ -1,0 +1,145 @@
+<html>
+
+<nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link " href="admin">
+                    <h4>Početna strana</h4>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " role="button" (click)="func1()">
+                    <h4>Obavestenja</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a class="navbar-brand" href="admin">
+                    <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="kontakt_admin">
+                    <h4>Kontakt</h4>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" role="button" (click)="func()">
+                    <h4>Odjavi se</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<div *ngIf="opcija=='lovci'">
+    <table class="table">
+        <tr align="center">
+            <td>
+                Ime<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData1" [labels]="pieChartLabels1" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+            <td>
+                Prezime<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData2" [labels]="pieChartLabels2" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+            <td>
+                Grad<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData3" [labels]="pieChartLabels3" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                Zemlja<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData4" [labels]="pieChartLabels4" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+            <td>
+                Omiljena zivotinja<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData5" [labels]="pieChartLabels5" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+            <td>
+                Omiljeno loviste<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData6" [labels]="pieChartLabels6" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div *ngIf="opcija=='udruzenja'">
+    <table class="table">
+        <tr align="center">
+            <td>
+                Zemlja<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData7" [labels]="pieChartLabels7" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+            <td>
+                Grad<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData8" [labels]="pieChartLabels8" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                Broj clanova<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData9" [labels]="pieChartLabels9" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+            <td>
+                Clanarina<br>
+                <div style="display: block; height:500px; width:500px">
+                    <canvas baseChart [data]="pieChartData10" [labels]="pieChartLabels10" [chartType]="pieChartType"
+                         [legend]="pieChartLegend" [colors]="pieChartColors">
+                    </canvas>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</html>

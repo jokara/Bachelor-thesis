@@ -1,0 +1,14 @@
+a {
+    color: black;
+}
+
+.page{
+    background-image: url('../../assets/pozadina1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size:100%;
+}
+
+h3 {
+    color: white;
+}

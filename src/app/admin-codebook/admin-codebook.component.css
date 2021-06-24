@@ -1,0 +1,11 @@
+#page{
+    background-image: url('../../assets/pozadina5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size:100%;
+    background-position-y: bottom;
+    font-weight: bold;
+    font-style: oblique;
+    color: wheat;
+    font-size: large;
+}

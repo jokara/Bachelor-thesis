@@ -1,0 +1,198 @@
+<html>
+<script src="https://smtpjs.com/v3/smtp.js">
+</script>
+<script>
+  function pozivFje(){
+    Email.send({
+      Host : "smtp.gmail.com",
+      Username : "markoivanovic1828@gmail.com",
+      Password : "marko1828ivanovic",
+      To : 'quartusdemon2019@gmail.com',
+      From : "markoivanovic1828@gmail.com",
+      Subject : "Registracija",
+      Body : "And this is the body"
+  }).then(
+    message => alert(message)
+  );
+}
+</script>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light nav justify-content-center bg-white">
+  <div class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link " href="home">
+          <h4>Početna strana</h4>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="vesti_neregistrovani">
+          <h4>Vesti</h4>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="obavestenja_neregistrovani">
+          <h4>Obavestenja</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!--<script>pozivFje();</script>-->
+  <div class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
+      <li>
+        <a class="navbar-brand" href="#">
+          <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="kontakt">
+          <h4>Kontakt</h4>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" href="logovanje">
+          <h4>Logovanje</h4>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link active" href="registracija">
+          <h4>Registracija</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<div class="page">
+  <br><br><br><br> <br>
+  <h4 style="color: white; font-weight: bold;">Molimo Vas da popunite datu formu</h4>
+  <br><br>
+  <form>
+    <table class="table" align="center">
+      <tbody>
+        <tr>
+          <td>
+            <span style="color: white; font-weight: bold;">Ime:</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='text' name='name' [(ngModel)]='name'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white; font-weight: bold;">Srednje ime:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='text' name='middleName' [(ngModel)]='middleName' ng-pattern='[a-z]*'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span
+              style="color: white;font-weight: bold;">Prezime:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='text' name='surname' [(ngModel)]='surname' ng-pattern='[a-z]*'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Korisnicko ime:</span> &nbsp;&nbsp;
+            <input type='text' name='username' [(ngModel)]='username'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span
+              style="color: white;font-weight: bold;">Lozinka:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='password' name='password' [(ngModel)]='password'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Potvrda lozinke:</span>&nbsp;&nbsp;
+            <input type='password' name='password2' [(ngModel)]='password2'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Datum
+              rodjenja:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='date' name='birthdate' [(ngModel)]='birthdate'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Prebivaliste:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <input type='text' name='residence' [(ngModel)]='residence'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span
+              style="color: white;font-weight: bold;">Zemlja:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='text' name='country' [(ngModel)]='country'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Lovacko drustvo:</span>&nbsp;
+            <input type='text' name='huntingSoc' [(ngModel)]='huntingSoc'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Broj clanske karte: </span>
+            <input type='text' name='ticketNum' [(ngModel)]='ticketNum'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">E-mail:</span>&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='text' name='email' [(ngModel)]='email'>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span style="color: white;font-weight: bold;">Telefon:</span>&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type='text' name='phoneNumber' [(ngModel)]='phoneNumber'>
+          </td>
+        </tr>
+        <!--<tr align="center">
+            <td>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              Slika:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <input type="file" (change)="onSelectFile($event)">
+            </td>
+          </tr>-->
+        <tr height="60">
+          <td>
+            <button (click)='register()' class="btn btn-success">Registruj se</button>
+          </td>
+          <!--<td>
+            <a onclick="">Mejluj se</a>
+            <a onclick="pozivFje()">Execute JavaScript</a>
+          </td>-->
+        </tr>
+        <tr>
+          <td>
+            <a routerLink='../logovanje'>Nazad</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <span style='color: red' align="center">
+    {{ErrorMessage}}
+  </span>
+
+  <br>
+</div>
+
+</html>

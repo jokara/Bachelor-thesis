@@ -1,0 +1,122 @@
+<html>
+
+<body>
+
+    <nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link " href="admin">
+                        <h4>Početna strana</h4>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " role="button" (click)="func1()">
+                        <h4>Obavestenja</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <a class="navbar-brand" href="admin">
+                        <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="kontakt_admin">
+                        <h4>Kontakt</h4>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" role="button" (click)="func()">
+                        <h4>Odjavi se</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br><br><br><br>
+    <div *ngIf="opcija!='moze'">
+        <form>
+            <table class="table">
+                <tbody align="center">
+                    <tr>
+                        <td>
+                            Naziv: &nbsp;&nbsp;&nbsp;<input type="text" name="naziv" [(ngModel)]="naziv">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Od:&nbsp;&nbsp;&nbsp;<input type="date" name="datum1" [(ngModel)]="datum1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Do:&nbsp;&nbsp;&nbsp;<input type="date" name="datum2" [(ngModel)]="datum2">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <form>
+        <div id="HTMLtoPDF" *ngIf="opcija=='moze'">
+            <h1 align="center">{{naziv}}</h1>
+            <div align="center">Od:&nbsp; {{datum1}} <br>
+                Do:&nbsp;{{datum2}}
+            </div>
+            <table class="table">
+                <tbody align="center">
+                    <tr>
+                        <td>
+                            Broj ulogovanih u datom periodu : {{brojUlogovanih}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Broj vesti: {{brojVesti}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Broj ulogovanih lovaca u datom periodu: {{brojLovacaUlogovanih}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Broj ulogovanih udruzenja u datom periodu: {{brojUdruzenjaUlogovanih}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Broj objavljenih obavestenja: {{brojObavestenja}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div align="center"> <button class="btn btn-danger" type="button" (click)="izvezi1()">Napravi izvestaj</button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div align="center" *ngIf="opcija!='moze'"> <button class="btn btn-danger" type="button" (click)="izvezi()">Napravi izvestaj</button>
+        </div>
+    </form>
+
+</body>
+
+
+</html>

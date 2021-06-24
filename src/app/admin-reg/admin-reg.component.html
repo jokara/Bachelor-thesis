@@ -1,0 +1,559 @@
+<html>
+<nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link " href="admin">
+                    <h4>Početna strana</h4>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " role="button" (click)="func1()">
+                    <h4>Obavestenja</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li>
+                <a class="navbar-brand" href="admin">
+                    <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="kontakt_admin">
+                    <h4>Kontakt</h4>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" role="button" (click)="func()">
+                    <h4>Odjavi se</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<form>
+    <table class="table">
+        <tbody>
+            <tr align="center">
+                <td>
+                    <button class="btn btn-success" (click)="azurirajKorisnika()">Azuriranje korisnika</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="kreirajLovca()">Kreiraj lovca</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" (click)="kreirajUdruzenje()">Kreiraj lovacko drustvo</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+
+<div class="page" *ngIf="opcija=='lovacKreiranje'" id="page">
+    <br><br><br><br> <br>
+    <h4 style="font-weight: bold;color: #FFFFFF;" align="center">Molimo Vas da popunite datu formu</h4>
+    <br><br>
+    <form>
+        <table class="table">
+            <tbody align="center">
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Ime:</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='name' [(ngModel)]='name'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Srednje ime:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='middleName' [(ngModel)]='middleName' ng-pattern='[a-z]*'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span
+                            style="font-weight: bold;color: #FFFFFF;">Prezime:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='surname' [(ngModel)]='surname' ng-pattern='[a-z]*'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Korisnicko ime:</span> &nbsp;&nbsp;
+                        <input type='text' name='username' [(ngModel)]='username'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span
+                            style="font-weight: bold;color: #FFFFFF;">Lozinka:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='password' name='password' [(ngModel)]='password'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Potvrda lozinke:</span>&nbsp;&nbsp;
+                        <input type='password' name='password2' [(ngModel)]='password2'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Datum
+                            rodjenja:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='date' name='birthdate' [(ngModel)]='birthdate'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Prebivaliste:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;
+                        <input type='text' name='residence' [(ngModel)]='residence'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span
+                            style="font-weight: bold;color: #FFFFFF;">Zemlja:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='country' [(ngModel)]='country'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Lovacko drustvo:</span>&nbsp;
+                        <input type='text' name='huntingSoc' [(ngModel)]='huntingSoc'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Broj clanske karte: </span>
+                        <input type='text' name='ticketNum' [(ngModel)]='ticketNum'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">E-mail:</span>&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='email' [(ngModel)]='email'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Telefon:</span>&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='phoneNumber' [(ngModel)]='phoneNumber'>
+                    </td>
+                </tr>
+                <tr height="60">
+                    <td>
+                        <button (click)='registrujKorisnika()' class="btn btn-success">Registruj</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <span style='color: red' align="center">
+        {{ErrorMessage}}
+    </span>
+
+    <br>
+</div>
+
+
+<div class="page" *ngIf="opcija=='udruzenjeKreiranje'" id="page">
+    <br><br><br><br> <br>
+    <h4 style="font-weight: bold;color: #FFFFFF;" align="center">Molimo Vas da popunite datu formu</h4>
+    <br><br>
+    <form>
+        <table class="table">
+            <tbody align="center">
+                <tr>
+                    <td>
+                        <span style="font-weight: bold; color: #FFFFFF;">Naziv:</span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='name' [(ngModel)]='name'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span
+                            style="font-weight: bold;color: #FFFFFF;">Lozinka:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='password' name='password' [(ngModel)]='password'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Potvrda lozinke:</span>&nbsp;&nbsp;
+                        <input type='password' name='password2' [(ngModel)]='password2'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Mesto:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                        <input type='text' name='residence' [(ngModel)]='residence'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span
+                            style="font-weight: bold;color: #FFFFFF;">Zemlja:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='country' [(ngModel)]='country'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">E-mail:</span>&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='email' [(ngModel)]='email'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Telefon:</span>&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='phoneNumber' [(ngModel)]='phoneNumber'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Broj clanova:</span>&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='numMembers' [(ngModel)]='numMembers'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-weight: bold;color: #FFFFFF;">Clanarina:</span>&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='membership' [(ngModel)]='membership'>
+                    </td>
+                </tr>
+                <tr height="60">
+                    <td>
+                        <button (click)='registrujUdruzenje()' class="btn btn-success">Registruj</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <span style='color: red' align="center">
+        {{ErrorMessage}}
+    </span>
+
+    <br>
+</div>
+
+<div *ngIf="opcija=='azuriranjeKorisnika'" id="azuriranje">
+    <table class="table" *ngFor='let u of users'>
+        <tbody align="center">
+            <tr>
+                <td>
+                    <h3>Korisnik</h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Ime: {{u.name}}
+                </td>
+            </tr>
+            <tr *ngIf="u.type=='hunter'">
+                <td>
+                    Prezime: {{u.surname}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" (click)="izmeniKorisnika(u)">Izmeni</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+<div class="page" *ngIf="opcija=='izmeniKorisnika' && type=='society'">
+    <br><br><br><br> <br>
+    <h4 style="font-weight: bold;" align="center">Molimo Vas da popunite datu formu</h4>
+    <br><br>
+    <form>
+        <table class="table">
+            <tbody align="center">
+                <tr>
+                    <td>
+                        Ime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="name" [(ngModel)]="name">
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        Telefon:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='phoneNumber' [(ngModel)]='phoneNumber'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prebivaliste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                        <input type='text' name='residence' [(ngModel)]='residence'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Zemlja:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='country' [(ngModel)]='country'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Slike
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span *ngIf="picture1!=''"><img [src]="picture1" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="picture2!=''"><img [src]="picture2" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="picture3!=''"><img [src]="picture3" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Jedna slika:
+                        <input type="radio" name="brojSlika" value="1" [(ngModel)]="brojSlika"> <br><br>
+                        Dve slike:
+                        <input type="radio" name="brojSlika" value="2" [(ngModel)]="brojSlika"> <br><br>
+                        Tri slike:
+                        <input type="radio" name="brojSlika" value="3" [(ngModel)]="brojSlika"> <br><br>
+
+                        <div *ngIf="brojSlika==1">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                        </div>
+                        <div *ngIf="brojSlika==2">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile2($event)">&nbsp;&nbsp;
+                        </div>
+                        <div *ngIf="brojSlika==3">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile2($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile3($event)">&nbsp;&nbsp;
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Lozinka:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='password' name='password' [(ngModel)]='password'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Potvrda lozinke:&nbsp;&nbsp;
+                        <input type='password' name='password2' [(ngModel)]='password2'>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Broj clanova:&nbsp;
+                        <input type='text' name='numMembers' [(ngModel)]='numMembers'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Clanarina:
+                        <input type='text' name='membership' [(ngModel)]='membership'>
+                    </td>
+                </tr>
+                <tr height="60">
+                    <td>
+                        <button (click)='sacuvajIzmeneUdruzenje()' class="btn btn-success">Sacuvaj</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+    <span style='color: red' align="center">
+        {{ErrorMessage}}
+    </span>
+
+    <br>
+</div>
+
+<div class="page" *ngIf="opcija=='izmeniKorisnika' && (type=='hunter' || type=='admin')">
+    <br><br><br><br> <br>
+    <h4 style="font-weight: bold;" align="center">Molimo Vas da popunite datu formu</h4>
+    <br><br>
+    <form>
+        <table class="table">
+            <tbody align="center">
+                <tr>
+                    <td>
+                        Ime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="name" [(ngModel)]="name">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prezime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='surname' [(ngModel)]='surname' ng-pattern='[a-z]*'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Datum rodjenja:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='date' name='birthdate' [(ngModel)]='birthdate'>
+                        
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Telefon:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='phoneNumber' [(ngModel)]='phoneNumber'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prebivaliste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                        <input type='text' name='residence' [(ngModel)]='residence'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Zemlja:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='country' [(ngModel)]='country'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Slike
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span *ngIf="picture1!=''"><img [src]="picture1" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="picture2!=''"><img [src]="picture2" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                        <span *ngIf="picture3!=''"><img [src]="picture3" height="300px" width="300px"></span>
+                        &nbsp;&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Jedna slika:
+                        <input type="radio" name="brojSlika" value="1" [(ngModel)]="brojSlika"> <br><br>
+                        Dve slike:
+                        <input type="radio" name="brojSlika" value="2" [(ngModel)]="brojSlika"> <br><br>
+                        Tri slike:
+                        <input type="radio" name="brojSlika" value="3" [(ngModel)]="brojSlika"> <br><br>
+
+                        <div *ngIf="brojSlika==1">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[6]">
+                        </div>
+                        <div *ngIf="brojSlika==2">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile2($event)">&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[6]">
+                        </div>
+                        <div *ngIf="brojSlika==3">
+                            Slike:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile1($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile2($event)">&nbsp;&nbsp;
+                            <input type="file" (change)="onSelectFile3($event)">&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="javni" [(ngModel)]="nizJavnih[6]">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E-mail:&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' name='email' [(ngModel)]='email'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Lozinka:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='password' name='password' [(ngModel)]='password'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Potvrda lozinke:&nbsp;&nbsp;
+                        <input type='password' name='password2' [(ngModel)]='password2'>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Vrste zivotinja:&nbsp;
+                        <input type='text' name='animals' [(ngModel)]='animals'>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Omiljena lovista:
+                        <input type='text' name='favHuntGround' [(ngModel)]='favHuntGround'>
+                        
+                    </td>
+                </tr>
+
+
+                <!--<tr align="center">
+            <td>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              Slika:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <input type="file" (change)="onSelectFile($event)">
+            </td>
+          </tr>-->
+                <tr height="60">
+                    <td>
+                        <button (click)='sacuvajIzmeneLovac()' class="btn btn-success">Sacuvaj</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+    <span style='color: red' align="center">
+        {{ErrorMessage}}
+    </span>
+
+    <br>
+</div>
+
+
+
+</html>

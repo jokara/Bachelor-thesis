@@ -1,0 +1,143 @@
+<html>
+    <nav class="navbar  navbar-expand-lg navbar-light nav justify-content-center bg-white">
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="admin">
+                        <h4>Početna strana</h4>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" role="button" (click)="func1()">
+                        <h4>Obavestenja</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <a class="navbar-brand" href="admin">
+                        <img src="../../assets/logo_clear.jpg" width="145" height="230" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="kontakt_admin">
+                        <h4>Kontakt</h4>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" role="button" (click)="func()">
+                        <h4>Odjavi se</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<br><br><br><br>
+
+
+
+
+<div>
+    <h3 align="center">Postavite sliku reklame i vidljivost</h3> <br><br>
+    <form>
+        <table class="table">
+            <tbody>
+                <tr align="center" height="80">
+                    <td>
+                        &nbsp;&nbsp; &nbsp;
+                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; Fotografija &nbsp;
+                        &nbsp;&nbsp; &nbsp;
+                        <input type="file" (change)="onSelectFile($event)">
+                    </td>
+                </tr>
+                
+                <tr align="center" height="80">
+
+                    <td>
+                        Vidljivost:&nbsp; &nbsp;
+                        <input type="radio" name="vidljivost" value="svi" [(ngModel)]="vidljivost"> Svi
+                        <input type="radio" name="vidljivost" value="sviLovci" [(ngModel)]="vidljivost"> Svi lovci
+                        &nbsp; &nbsp;
+                        <input type="radio" name="vidljivost" value="svaUdruzenja" [(ngModel)]="vidljivost"> Sva
+                        udruzenja &nbsp;
+                        <input type="radio" name="vidljivost" value="grupa" [(ngModel)]="vidljivost"> Formiraj grupu
+                        <input type="radio" name="vidljivost" value="postojecaGrupa" [(ngModel)]="vidljivost"> Izaberi vec kreiranu
+                    </td>
+                </tr>
+                <tr *ngIf="vidljivost=='postojecaGrupa'" align="center"> 
+                    <td>
+                        <select name="nazivGrupe" [(ngModel)]="nazivGrupe"> 
+                            <option *ngFor="let g of grupeZaBiranje" value="{{g.name}}" >{{g.name}}</option>
+                        </select>
+                   </td>
+                </tr>
+                <tr *ngIf="vidljivost=='grupa'">
+                    <td>
+                        <div *ngIf="vidljivost=='grupa'">
+                            <h4 align="center">Formiranje grupe</h4>
+                            <br><br>
+                            <div align="center">
+                                Naziv grupe: <input type="text" name="nazivGrupe" [(ngModel)]="nazivGrupe">
+                            </div>
+                            <br><br>
+                            <table class="table">
+                                <thead>
+                                    <tr align="center">
+                                        <td>
+                                            Ime lovca/Udruzenja
+                                        </td>
+                                        <td>
+                                            Cekiraj
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let u of users; let i=index" align="center">
+                                        <td *ngIf="u.type=='hunter'">
+                                            {{u.name}} &nbsp; {{u.surname}}
+                                        </td>
+                                        <td *ngIf="u.type=='society'">
+                                            {{u.name}}
+                                        </td>
+                                        <td *ngIf="u.type=='hunter'">
+                                            <input type="checkbox" name="vidljivost" value="cekirano[i]"
+                                                [(ngModel)]="cekirano[i]">
+                                        </td>
+                                        <td *ngIf="u.type=='society'">
+                                            <input type="checkbox" name="vidljivost" value="cekirano[i]"
+                                                [(ngModel)]="cekirano[i]">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr align="center" *ngIf="poruka!=''">
+                    <td>
+                        <span style='color: red' align="center">
+                            {{poruka}}
+                        </span>
+                    </td>
+                </tr>
+                <tr align="center" height="80">
+                    <td>
+                        <button class="btn btn-info" (click)="kreirajReklamu()">Kreiraj</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>
+
+
+</html>

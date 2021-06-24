@@ -1,0 +1,18 @@
+#page {
+    background-image: url('../../assets/pozadina_vesti.png');
+    background-size: cover;
+    background-size:100%;
+}
+
+#novaVest {
+    background-image: url('../../assets/pozadina_pravljenje_vesti.png');
+    background-size: cover;
+    background-size:100%;
+}
+
+#pregledInfo {
+    background-image: url('../../assets/pozadina_pregled_info.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size:100%;
+}
