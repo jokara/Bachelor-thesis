@@ -32,6 +32,7 @@ export class AdminCommercialComponent implements OnInit {
 
   grupeZaBiranje: Group[] = [];
 
+	//dohvati sve grupe za korisnika
 
   dohvatiSveGrupeKorisnikove(): void {
     this.grupe.forEach(element => {
@@ -143,7 +144,7 @@ export class AdminCommercialComponent implements OnInit {
     else return false;
   }
 
-
+	/*kreiraj reklamu*/
 
   kreirajReklamu(): void {
     if (this.proveraPopunjenaNeophodnaPolja() && this.proveraNestoCekirano() && this.proveraVidljivosti()) {

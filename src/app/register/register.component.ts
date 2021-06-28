@@ -173,7 +173,8 @@ export class RegisterComponent implements OnInit {
     });
 
   }
-
+	
+	/*ispis korisnika*/
   ispisiKorisnike(): void {
     this.users.forEach(element => {
       alert(element.username);
@@ -197,7 +198,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  
+  /*registrovanje*/
 
 
   register(): void {

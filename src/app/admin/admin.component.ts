@@ -14,7 +14,17 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  /*raspakivanje zipa rekurzivno*/
+  async function extractZip(source, target) {
+	  try {
+		await extract(source, { dir: target });
+		console.log("Extraction complete");
+	  } catch (err) {
+		console.log("Oops: extractZip failed", err);
+	  }
+	}
+	
+  /*brisanje iz local storage-a*/
   func(): void {
     localStorage.removeItem("ulogovan");
     this.router.navigate(['/logovanje']);
@@ -24,7 +34,8 @@ export class AdminComponent implements OnInit {
     localStorage.setItem("obavestenja","pregled");
     this.router.navigate(['/admin_obavestenja'])
   }
-
+	
+	
   kategorijaVesti(): void {
     localStorage.setItem("vesti","kategorija");
     this.router.navigate(['/admin_vesti']);

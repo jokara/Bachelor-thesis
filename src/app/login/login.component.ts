@@ -38,12 +38,15 @@ export class LoginComponent implements OnInit {
     //alert(s);
     return s;
   }
+  
+  /*poslednje logovanje*/
 
   poslednjeLogovanjeUpdate():void {
     this.service.promeniPoslednjeLogovanje(this.username,this.generisiDanasnjiDatum()).subscribe(data=>{
     });
   }
-
+	
+	/*logovanje*/
   login():void{
     this.service.login(this.username, this.password,"hunter").subscribe((user: User)=>{
       if(user[0]){

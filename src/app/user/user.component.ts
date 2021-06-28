@@ -92,7 +92,7 @@ export class UserComponent implements OnInit {
 
   grupeZaBiranje: Group[] = [];
 
-
+	/*dohvatanje svih korisnika*/
   dohvatiSveGrupeKorisnikove(): void {
     this.grupe.forEach(element => {
       if (element.creator == localStorage.getItem("ulogovan")) {
@@ -156,7 +156,9 @@ export class UserComponent implements OnInit {
   }
 
   /*************************************************Popunjavanje svih nizova************************************************/
-
+	
+	/*selektovanje fajla*/	
+	
   onSelectFile(event) { // called each time file input changes
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
@@ -219,14 +221,15 @@ export class UserComponent implements OnInit {
     }
   }
 
-
+  /*dohvatanje pitanja*/
 
   dohvatiSvaPitanja(): void {
     this.service.pitanjaPoKorisniku(localStorage.getItem("ulogovan")).subscribe(data => {
       this.pitanja = JSON.parse(JSON.stringify(data));
     });
   }
-
+	
+  /*dohvatanje vesti*/	
   dohvatiSveVesti(): void {
     this.service.dohvatiSveVesti().subscribe(data => {
       this.sveVesti = JSON.parse(JSON.stringify(data));
@@ -234,7 +237,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-
+  /*dohvatanje grupa*/
   dohvatiSveGrupe(): void {
     this.service.dohvatiSveGrupe().subscribe(data => {
       this.grupe = JSON.parse(JSON.stringify(data));
@@ -329,7 +332,9 @@ export class UserComponent implements OnInit {
       }
     }
   }
-
+	
+  /*provera cekiranosti*/
+	
   proveraNestoCekirano(): boolean {
     if (this.vidljivost == "svi" || this.vidljivost == "svaUdruzenja" || this.vidljivost == "sviLovci" || this.vidljivost == "postojecaGrupa") return true;
     if (this.vidljivost == "grupa") {
@@ -339,6 +344,8 @@ export class UserComponent implements OnInit {
       else return false;
     }
   }
+  
+  /*kreiranje vesti*/
 
   kreirajVest(): void {
     this.azuriranjeUBaziSaProverama();
@@ -382,6 +389,8 @@ export class UserComponent implements OnInit {
       location.reload();
     }
   }
+  
+  /*kreiranje stringa za grupu*/
 
   kreirajStringZaGrupu(): string {
     let s = "";
@@ -397,7 +406,8 @@ export class UserComponent implements OnInit {
     }
     return s;
   }
-
+	
+  /*generisanje danasnjeg datuma*/
 
   generisiDanasnjiDatum(): String {
     let vreme = new Date();
@@ -423,6 +433,8 @@ export class UserComponent implements OnInit {
     else return true;
   }
 
+  /* kreiranje pitanja */
+
   kreirajPitanje(): void {
     if (this.proveraDaLiJeUnetoPitanje()) {
       this.pitanjeKreiranje = new Question();
@@ -437,7 +449,9 @@ export class UserComponent implements OnInit {
   }
 
   /******************************************Arhiviranje i brisanje vesti*************************************************** */
-
+ 
+  /*arhiviranje vesti*/
+ 
   arhivirajVest(naslov) {
     this.service.promeniVidljivostVesti(naslov, "niko").subscribe(data => {
     });
@@ -445,7 +459,8 @@ export class UserComponent implements OnInit {
     location.reload();
   }
 
-
+  /*brisanje vesti*/
+  
   obrisiVest(naslov) {
     this.service.promeniVidljivostVesti(naslov, "obrisi").subscribe(data => {
     });
@@ -464,6 +479,8 @@ export class UserComponent implements OnInit {
       }
     });
   }
+  
+  /*postavljanje flegova*/
 
   postaviUserPregledInfo(): void {
     this.users.forEach(element => {
@@ -478,6 +495,8 @@ export class UserComponent implements OnInit {
       this.nizJavnih[i] = this.userPregledInfo.publicInfo[i];
     }
   }
+
+	/*postavljanje podrazumevanih vrednosti*/
 
   postaviPodrazumevaneVrednosti(): void {
     this.name = this.userPregledInfo.name;
@@ -495,7 +514,10 @@ export class UserComponent implements OnInit {
     this.animals = this.userPregledInfo.animals;
     this.favHuntGround = this.userPregledInfo.favHuntGround;
   }
-
+   
+   
+  /*inicijalizacija boolean promenljivih*/ 
+   
   inicijalizacijaJavnihInfoBool(): void {
     for (let i = 0; i < 10; i++) {
       this.nizJavnih[i] = false;
@@ -516,7 +538,9 @@ export class UserComponent implements OnInit {
       //alert(this.nizJavnih[0]);
     }
   }*/
-
+  
+  /*cuvanje izmena*/
+  
   sacuvajIzmene(): void {
 
     if (this.proveraSviPodaciUneti() && this.proveraSviPodaciValidni() && this.proveraZaLoznike() && this.proveraZaTelefon()) {
@@ -580,7 +604,9 @@ export class UserComponent implements OnInit {
       location.reload();
     }
   }
-
+	
+  /*kreiranje stringa za korisnika*/	
+	
   kreirajStringZaKorisnika(): string {
     let s = "";
     for (let i = 0; i < this.nizJavnih.length; i++) {
@@ -594,6 +620,7 @@ export class UserComponent implements OnInit {
     return s;
   }
 
+/*provera da li su svi podaci uneti*/
 
   proveraSviPodaciUneti(): boolean {
     this.ErrorMessage = "";
@@ -608,6 +635,8 @@ export class UserComponent implements OnInit {
     if (this.ErrorMessage == "") return true;
     return false;
   }
+  
+  /*provera svi podaci validni*/
 
   proveraSviPodaciValidni(): boolean {
     this.ErrorMessage = "";
@@ -618,6 +647,8 @@ export class UserComponent implements OnInit {
     if (this.ErrorMessage == "") return true;
     return false;
   }
+  
+  /*provera za telefon*/
 
   proveraZaTelefon(): boolean {
     this.ErrorMessage = "";
@@ -629,7 +660,7 @@ export class UserComponent implements OnInit {
       return false;
     }
   }
-
+	/*provera za lozinke*/
   proveraZaLoznike(): boolean {
     this.ErrorMessage = "";
     if (this.password == this.password2) {
@@ -652,7 +683,7 @@ export class UserComponent implements OnInit {
 
   /************************************************Pretraga******************************************************************/
 
-
+  /*pretrazi sve lovce*/
   pretraziSveLovce() {
     this.unesiteImePretraga = "0";
     while (this.korisniciZaPrikaz.length > 0) {
@@ -665,7 +696,8 @@ export class UserComponent implements OnInit {
     });
     this.prikazPretraga = "mozeLovac";
   }
-
+	
+	/*pretrazi sva udruzenja*/
   pretraziSvaUdruzenja() {
     this.unesiteImePretraga = "0";
     while (this.korisniciZaPrikaz.length > 0) {
@@ -680,15 +712,20 @@ export class UserComponent implements OnInit {
     });
     this.prikazPretraga = "mozeUdruzenje";
   }
+  
+  
 
   pretragaPoImenuLovaca(): void {
     this.unesiteImePretraga = "1";
   }
-
+	
+	
+	
   pretragaPoImenuUdruzenja(): void {
     this.unesiteImePretraga = "2";
   }
 
+/*pretraga po imenu lovca*/
   pretraziLovcePoImenu(): void {
     this.unesiteImePretraga = "0";
     while (this.korisniciZaPrikaz.length > 0) {
@@ -702,6 +739,7 @@ export class UserComponent implements OnInit {
     this.prikazPretraga = "mozeLovac";
   }
 
+/*pretraga po imenu udruzenja*/
   pretraziUdruzenjaPoImenu(): void {
     this.unesiteImePretraga = "0";
     while (this.korisniciZaPrikaz.length > 0) {
@@ -718,7 +756,9 @@ export class UserComponent implements OnInit {
 
 
   /**Reklame*/
-
+	
+/*popuni niz reklama*/	
+	
   popuniNizReklamaZaKorisnika(): void {
     this.reklame.forEach(e => {
       if (e.visibility == "svi" || e.visibility == "sviLovci") {
@@ -744,6 +784,7 @@ export class UserComponent implements OnInit {
 
 
   /***************************************************SIFRARNICI************************************************************/
+  /*dohvati sve sifrarnike*/
   dohvatiSveSifrarnike(): void {
     this.service.dohvatiSveSifrarnike().subscribe(data => {
       this.sviSifrarnici = JSON.parse(JSON.stringify(data));
@@ -751,7 +792,7 @@ export class UserComponent implements OnInit {
       
     });
   }
-
+	/*popuni sifrarnik*/
   popuniSifrarnikKategorije(): void{
     this.sviSifrarnici.forEach(element => {
       if (element.name=="category"){
@@ -761,7 +802,7 @@ export class UserComponent implements OnInit {
       }
     });
   }
-
+	/*provera za sifrarnik*/
   proveraDaLiPostojiRecUSifrarniku():boolean{
     let i=0
     this.data.forEach(elem => {
@@ -775,7 +816,7 @@ export class UserComponent implements OnInit {
     if (i==1) return true;
     else return false;
   }
-
+	/*trazenje novog id*/
   noviIdTrazenje():number{
     let id=0
     this.data.forEach(elem => {
@@ -785,7 +826,8 @@ export class UserComponent implements OnInit {
     id= id+1;
     return id;
   }
-
+	
+	/*ubacivanje novog elementa*/
   ubacivanjeNovogElementaUNiz():void{
     let noviElem = new CodebookElem();
     noviElem.id=this.noviIdTrazenje();
@@ -797,7 +839,7 @@ export class UserComponent implements OnInit {
     }
     this.data.push(noviElem);
   }
-
+	/*azuriranje u bazi sa proverama*/
   azuriranjeUBaziSaProverama(): void{
     if (this.proveraDaLiPostojiRecUSifrarniku()==false){
       this.ubacivanjeNovogElementaUNiz();

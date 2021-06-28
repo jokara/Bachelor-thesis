@@ -31,7 +31,8 @@ export class AdminQuestionsComponent implements OnInit {
     localStorage.setItem("obavestenja", "pregled");
     this.router.navigate(['/admin_obavestenja'])
   }
-
+	
+/*napravi pitanja*/	
   napraviPitanjaZaOdgovaranje(): void {
     this.pitanja.forEach(element => {
       if (element.answer == "") {
@@ -39,6 +40,8 @@ export class AdminQuestionsComponent implements OnInit {
       }
     });
   }
+  
+  /*dohvati pitanja admin*/
 
   dohvatiSvaPitanja(): void {
     this.service.dohvatiSvaPitanja().subscribe(data => {
@@ -46,13 +49,13 @@ export class AdminQuestionsComponent implements OnInit {
       this.napraviPitanjaZaOdgovaranje();
     });
   }
-
+	/*izaberi prikaz admin*/
 
   izaberi(p): void {
     this.opcija = "prikaz";
     this.pitanje = p;
   }
-
+	/*sacuvaj izmene admin*/
   sacuvajIzmene(): void {
     if (this.odgovor != "") {
       this.service.promeniOdgovorPitanja(this.pitanje.question, this.odgovor).subscribe(data => {

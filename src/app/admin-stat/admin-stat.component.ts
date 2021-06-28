@@ -99,7 +99,7 @@ export class AdminStatComponent implements OnInit {
   /***********************************Gimnastika sa lovcima ***********************************************/
   
 
-  /*Ime*/
+  /*provera za ime*/
   proveraPostojiIme(ime):boolean{
     let i=0
     this.pieChartLabels1.forEach(element => {
@@ -110,7 +110,8 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
-
+	
+  /*broj pojavljivanja*/
   izracunajBrojPojavljivanja(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -121,7 +122,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+	/*popunjavanje dijagrama za ime*/
   popuniChartIme():void{
     this.users.forEach(element => {
       if (this.proveraPostojiIme(element.name) && element.type=="hunter"){
@@ -130,14 +131,14 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+	/*popunjavanje niza za podatke ime*/
   popuniDataIme():void{
     this.pieChartLabels1.forEach(elem => {
       this.pieChartData1.push(this.izracunajBrojPojavljivanja(elem));
     });
   }
 
-  /*Prezime*/
+  /*provera za prezime*/
   proveraPostojiPrezime(prezime):boolean{
     let i=0
     this.pieChartLabels2.forEach(element => {
@@ -148,7 +149,9 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
-
+  
+  
+/*broj pojavljivanja prezimena*/
   izracunajBrojPojavljivanjaPrezimena(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -159,7 +162,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama prezime*/
   popuniChartPrezime():void{
     this.users.forEach(element => {
       if (this.proveraPostojiPrezime(element.surname) && element.type=="hunter"){
@@ -168,14 +171,14 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+/*popunjavanje niza za podatke prezime*/
   popuniDataPrezime():void{
     this.pieChartLabels2.forEach(elem => {
       this.pieChartData2.push(this.izracunajBrojPojavljivanjaPrezimena(elem));
     });
   }
 
-  /*Grad*/
+  /*provera za grad*/
   proveraPostojiGrad(grad):boolean{
     let i =0
     this.pieChartLabels3.forEach(element => {
@@ -187,6 +190,7 @@ export class AdminStatComponent implements OnInit {
     else {return true;} 
   }
 
+	/*broj pojavljivanja grada*/
   izracunajBrojPojavljivanjaGrada(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -197,7 +201,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama grad*/
   popuniChartGrad():void{
     this.users.forEach(element => {
       if (this.proveraPostojiGrad(element.residence) && element.type=="hunter"){
@@ -206,14 +210,14 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+/*popunjavanje niza za podatke grad*/
   popuniDataGrad():void{
     this.pieChartLabels3.forEach(elem => {
       this.pieChartData3.push(this.izracunajBrojPojavljivanjaGrada(elem));
     });
   }
   
-  /*Zemlja*/
+  /*provera za zemlju*/
 
   proveraPostojiZemlja(zemlja):boolean{
     let i=0;
@@ -223,7 +227,7 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
-
+	/*broj pojavljivanja zemlja*/
   izracunajBrojPojavljivanjaZemlja(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -234,7 +238,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama zemlja*/
   popuniChartZemlja():void{
     this.users.forEach(element => {
       if (element.type=="hunter" && this.proveraPostojiZemlja(element.country.toString())){
@@ -248,7 +252,7 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+/*popunjavanje niza za podatke zemlja*/
   popuniDataZemlja():void{
     this.pieChartLabels4.forEach(elem => {
       this.pieChartData4.push(this.izracunajBrojPojavljivanjaZemlja(elem));
@@ -256,7 +260,7 @@ export class AdminStatComponent implements OnInit {
   }
 
 
-  /*Zivotinje*/
+  /*provera za zivotinje*/
   proveraPostojiZivotinja(zivotinja):boolean{
     let i=0
     this.pieChartLabels5.forEach(element => {
@@ -267,7 +271,7 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
-
+/*broj pojavljivanja zivotinja*/
   izracunajBrojPojavljivanjaZivotinja(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -278,7 +282,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama zivotinja*/
   popuniChartZivotinja():void{
     this.users.forEach(element => {
       if (this.proveraPostojiZivotinja(element.animals) && element.type=="hunter"){
@@ -287,14 +291,14 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+/*popunjavanje niza podataka zivotinje*/
   popuniDataZivotinja():void{
     this.pieChartLabels5.forEach(elem => {
       this.pieChartData5.push(this.izracunajBrojPojavljivanjaZivotinja(elem));
     });
   }
 
-  /*Lovista*/
+  /*provera loviste*/
   proveraPostojiLoviste(loviste):boolean{
     let i=0;
     this.pieChartLabels6.forEach(element => {
@@ -305,7 +309,7 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
-
+/*broj pojavljivanja lovista*/
   izracunajBrojPojavljivanjaLovista(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -316,7 +320,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama lovista*/
   popuniChartLovista():void{
     this.users.forEach(element => {
       if (this.proveraPostojiLoviste(element.favHuntGround) && element.type=="hunter"){
@@ -324,7 +328,7 @@ export class AdminStatComponent implements OnInit {
       }
     });
   }
-
+/*popunjavanje niza podataka lovista*/
 
   popuniDataLovista():void{
     this.pieChartLabels6.forEach(elem => {
@@ -416,7 +420,7 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-  /*Broj clanova*/
+  /*provera broj clanova*/
 
   proveraPostojiBrClanova(brClanova):boolean{
     let i=0;
@@ -426,7 +430,7 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
-
+	/*broj pojavljivanja broj clanova*/
   izracunajBrojPojavljivanjaBrClanova(elem): number {
     let i =0;
     this.users.forEach(element => {
@@ -437,7 +441,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama broj clanova*/
   popuniChartBrClanova():void{
     this.users.forEach(element => {
       if (element.type=="society" && this.proveraPostojiBrClanova(element.numMembers.toString())){
@@ -451,7 +455,7 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+/*popunjavanje niza podataka broj clanova*/
   popuniDataBrClanova():void{
     this.pieChartLabels9.forEach(elem => {
       this.pieChartData9.push(this.izracunajBrojPojavljivanjaBrClanova(elem));
@@ -460,7 +464,7 @@ export class AdminStatComponent implements OnInit {
 
 
 
-  /*Broj clanova*/
+  /*provera clanarine*/
 
   proveraPostojiClanarina(clanarina):boolean{
     let i=0;
@@ -470,6 +474,8 @@ export class AdminStatComponent implements OnInit {
     if (i==1) {return false}
     else {return true;} 
   }
+  
+  /*broj pojavljivanja clanarina*/
 
   izracunajBrojPojavljivanjaClanarina(elem): number {
     let i =0;
@@ -481,7 +487,7 @@ export class AdminStatComponent implements OnInit {
     return i;
   } 
 
-
+/*popunjavanje dijagrama clanarina*/
   popuniChartClanarina():void{
     this.users.forEach(element => {
       if (element.type=="society" && this.proveraPostojiClanarina(element.membership.toString())){
@@ -495,7 +501,7 @@ export class AdminStatComponent implements OnInit {
     });
   }
 
-
+/*popunjavanje niza podataka clanarina*/
   popuniDataClanarina():void{
     this.pieChartLabels10.forEach(elem => {
       this.pieChartData10.push(this.izracunajBrojPojavljivanjaClanarina(elem));
