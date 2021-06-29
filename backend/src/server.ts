@@ -32,7 +32,7 @@ import Question from './models/question';
 import Commercial from './models/commercial';
 import Codebook from './models/codebook';
 
-
+/*login na serveru*/
 router.route('/login').post(
     (req, res)=>{
         let username = req.body.username;
@@ -46,7 +46,7 @@ router.route('/login').post(
         })
     }
 );
-
+/*login za udruzenja na serveru*/
 router.route('/loginSoc').post(
     (req, res)=>{
         let username = req.body.username;
@@ -59,7 +59,7 @@ router.route('/loginSoc').post(
         })
     }
 );
-
+/*registracija na serveru*/
 router.route('/register').post((req, res)=>{
     let user = new User(req.body.newUser);
     user.save().
@@ -70,6 +70,7 @@ router.route('/register').post((req, res)=>{
         })
 });
 
+/*dohvatanje korisnika na serveru*/
 router.route('/korisnici').get((req, res)=>{
     User.find((err, user)=>{
         if(err) console.log(err);
@@ -79,6 +80,7 @@ router.route('/korisnici').get((req, res)=>{
     })
 })
 
+/*dohvatanje vesti na serveru*/
 router.route('/vesti').get((req, res)=>{
     News.find((err, user)=>{
         if(err) console.log(err);
@@ -87,7 +89,7 @@ router.route('/vesti').get((req, res)=>{
         }
     })
 });
-
+/*dohvatanje pitanja na serveru*/
 router.route('/pitanja').get((req, res)=>{
     Question.find((err, user)=>{
         if(err) console.log(err);
@@ -96,7 +98,7 @@ router.route('/pitanja').get((req, res)=>{
         }
     })
 });
-
+/*dohvatanje grupe na serveru*/
 router.route('/grupe').get((req, res)=>{
     Group.find((err, user)=>{
         if(err) console.log(err);
@@ -105,7 +107,7 @@ router.route('/grupe').get((req, res)=>{
         }
     })
 });
-
+/*dohvatanje sifrarnika na serveru*/
 router.route('/sifrarnici').get((req, res)=>{
     Codebook.find((err, user)=>{
         if(err) console.log(err);
@@ -114,7 +116,7 @@ router.route('/sifrarnici').get((req, res)=>{
         }
     })
 });
-
+/*dohvatanje reklama na serveru*/
 router.route('/reklame').get((req, res)=>{
     Commercial.find((err, user)=>{
         if(err) console.log(err);
@@ -123,7 +125,7 @@ router.route('/reklame').get((req, res)=>{
         }
     })
 });
-
+/*dohvatanje obavestenja na serveru*/
 router.route('/obavestenja').get((req, res)=>{
     Notification.find((err, user)=>{
         if(err) console.log(err);
@@ -133,7 +135,7 @@ router.route('/obavestenja').get((req, res)=>{
     })
 });
 
-
+/*postavi vreme logovanja na serveru*/
 router.route('/vremeLogovanja').post((req, res)=>{
     User.collection.update({'username':req.body.username},{$set: {'lastLog':req.body.timeLog}},(err, user)=>{
         if(err) console.log(err);
@@ -142,7 +144,7 @@ router.route('/vremeLogovanja').post((req, res)=>{
         }
     })
 });
-
+/*javne vesti dohvati na serveru*/
 router.route('/javneVesti').post((req, res)=>{
     News.find({'visibility':req.body.publicNews}, (err, user)=>{
         if(err) console.log(err);
@@ -152,7 +154,7 @@ router.route('/javneVesti').post((req, res)=>{
     })
 });
 
-
+/*ubaci novu vest na serveru*/
 router.route('/novaVest').post((req, res)=>{
     let news = new News(req.body.vest);
     news.save().
@@ -162,7 +164,7 @@ router.route('/novaVest').post((req, res)=>{
             res.status(400).json({'user':'no'});
         })
 });
-
+/*ubaci novu grupu na serveru*/
 router.route('/novaGrupa').post((req, res)=>{
     let grupa = new Group(req.body.grupa);
     grupa.save().
@@ -172,7 +174,7 @@ router.route('/novaGrupa').post((req, res)=>{
             res.status(400).json({'user':'no'});
         })
 });
-
+/*ubaci novi sifrarnik na serveru*/
 router.route('/noviSifrarnik').post((req, res)=>{
     let sifrarnik = new Codebook(req.body.sifrarnik);
     sifrarnik.save().
@@ -182,7 +184,7 @@ router.route('/noviSifrarnik').post((req, res)=>{
             res.status(400).json({'user':'no'});
         })
 });
-
+/*ubaci novu reklamu na serveru*/
 router.route('/novaReklama').post((req, res)=>{
     let reklama = new Commercial(req.body.reklama);
     reklama.save().
@@ -192,7 +194,7 @@ router.route('/novaReklama').post((req, res)=>{
             res.status(400).json({'user':'no'});
         })
 });
-
+/*ubaci novo pitanje na serveru*/
 router.route('/novoPitanje').post((req, res)=>{
     let pitanje = new Question(req.body.pitanje);
     pitanje.save().
@@ -203,7 +205,7 @@ router.route('/novoPitanje').post((req, res)=>{
         })
 });
 
-
+/*ubaci novo obavestenje na serveru*/
 router.route('/novoObavestenje').post((req, res)=>{
     let obavestenje = new Notification(req.body.obavestenje);
     obavestenje.save().
@@ -213,7 +215,7 @@ router.route('/novoObavestenje').post((req, res)=>{
             res.status(400).json({'user':'no'});
         })
 });
-
+/*pitanja za korisnika server*/
 router.route('/pitanjaZaKorisnika').post((req, res)=>{
     Question.find({'creator':req.body.username}, (err, user)=>{
         if(err) console.log(err);
@@ -223,7 +225,7 @@ router.route('/pitanjaZaKorisnika').post((req, res)=>{
     })
 });
 
-
+/*promena vidljivosti na serveru*/
 router.route('/promenaVidljivostiVesti').post((req, res)=>{
     News.collection.update({'title':req.body.title},{$set: {'visibility':req.body.visibility}},(err, user)=>{
         if(err) console.log(err);
@@ -233,7 +235,7 @@ router.route('/promenaVidljivostiVesti').post((req, res)=>{
     })
 });
 
-
+/*promena kategorije vesti server*/
 router.route('/promenaKategorijuVesti').post((req, res)=>{
     News.collection.update({'title':req.body.title},{$set: {'category':req.body.category}},(err, user)=>{
         if(err) console.log(err);
@@ -242,7 +244,7 @@ router.route('/promenaKategorijuVesti').post((req, res)=>{
         }
     })
 });
-
+/*promena odgovora na pitanje server*/
 router.route('/promenaOdgovorPitanja').post((req, res)=>{
     Question.collection.update({'question':req.body.naslov},{$set: {'answer':req.body.odgovor}},(err, user)=>{
         if(err) console.log(err);
@@ -251,7 +253,7 @@ router.route('/promenaOdgovorPitanja').post((req, res)=>{
         }
     })
 });
-
+/*obrisi korisnika server*/
 router.route('/obrisiKorisnika').post((req, res)=>{
     let username=req.body.username;
     User.findOneAndDelete({'username':username},(err, user)=>{
@@ -261,7 +263,7 @@ router.route('/obrisiKorisnika').post((req, res)=>{
         }
     })
 });
-
+/*obrisi udruzenje server*/
 router.route('/obrisiUdruzenje').post((req, res)=>{
     let email=req.body.email;
     User.findOneAndDelete({'email':email},(err, user)=>{
@@ -271,7 +273,7 @@ router.route('/obrisiUdruzenje').post((req, res)=>{
         }
     })
 });
-
+/*obrisi sifrarnik*/
 router.route('/obrisiSifrarnik').post((req, res)=>{
     let name=req.body.name;
     Codebook.findOneAndDelete({'name':name},(err, user)=>{
@@ -281,7 +283,7 @@ router.route('/obrisiSifrarnik').post((req, res)=>{
         }
     })
 });
-
+/*obrisi vest*/
 router.route('/obrisiVest').post((req, res)=>{
     let title=req.body.title;
     News.findOneAndDelete({'title':title},(err, user)=>{
@@ -293,21 +295,7 @@ router.route('/obrisiVest').post((req, res)=>{
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*dohvati sve vesti server*/
 router.route('/news').get((req, res)=>{
     User.findOne({'username':'admin'}, (err, user)=>{
         if(err) console.log(err);
@@ -316,7 +304,7 @@ router.route('/news').get((req, res)=>{
         }
     })
 })
-
+/*vesti po korisniku*/
 router.route('/newsByUser').post((req, res)=>{
     User.findOne({'username':req.body.username}, (err, user)=>{
         if(err) console.log(err);
@@ -325,7 +313,7 @@ router.route('/newsByUser').post((req, res)=>{
         }
     })
 })
-
+/*vesti za admina server*/
 router.route('/addNewsToAdmin').post((req,res)=>{
     User.collection.updateOne({'username':'admin'}, {$push:{'news':'vest5'}});
 });

@@ -47,6 +47,7 @@ export class AdminNewsComponent implements OnInit {
     });
   }
   /***************************************************SIFRARNICI************************************************************/
+  /*dohvatanje svih sifrarnika*/
   dohvatiSveSifrarnike(): void {
     this.service.dohvatiSveSifrarnike().subscribe(data => {
       this.sviSifrarnici = JSON.parse(JSON.stringify(data));
@@ -54,7 +55,7 @@ export class AdminNewsComponent implements OnInit {
       
     });
   }
-
+/*popunjavanje kategorije sifrarnika*/
   popuniSifrarnikKategorije(): void{
     this.sviSifrarnici.forEach(element => {
       if (element.name=="category"){
@@ -64,7 +65,7 @@ export class AdminNewsComponent implements OnInit {
       }
     });
   }
-
+/*provera postoji rec u sifrarniku*/
   proveraDaLiPostojiRecUSifrarniku():boolean{
     let i=0
     this.data.forEach(elem => {
@@ -78,7 +79,7 @@ export class AdminNewsComponent implements OnInit {
     if (i==1) return true;
     else return false;
   }
-
+/*trazenje novog id*/
   noviIdTrazenje():number{
     let id=0
     this.data.forEach(elem => {
@@ -88,7 +89,7 @@ export class AdminNewsComponent implements OnInit {
     id= id+1;
     return id;
   }
-
+/*ubacivanje novog elementa u niz*/
   ubacivanjeNovogElementaUNiz():void{
     let noviElem = new CodebookElem();
     noviElem.id=this.noviIdTrazenje();
@@ -100,7 +101,7 @@ export class AdminNewsComponent implements OnInit {
     }
     this.data.push(noviElem);
   }
-
+/*azuriranje u bazi sa proverama*/
   azuriranjeUBaziSaProverama(): void{
     if (this.proveraDaLiPostojiRecUSifrarniku()==false){
       this.ubacivanjeNovogElementaUNiz();
@@ -116,7 +117,7 @@ export class AdminNewsComponent implements OnInit {
   }
 
   /**************************************************************************************************************************/
-
+	/*izaberi vest*/
   izaberi(v):void{
     this.izabranaVest= new News();
     this.izabranaVest.title=v.title;
@@ -130,7 +131,7 @@ export class AdminNewsComponent implements OnInit {
     this.kategorija=v.category;
   }
 
-
+	/*savucaj izmene vesti*/
   sacuvajIzmene(): void{ 
     if (this.kategorija instanceof Object){
       this.service.promeniKategorijuVesti(this.izabranaVest.title, this.kategorija.name).subscribe(data => {
@@ -144,7 +145,7 @@ export class AdminNewsComponent implements OnInit {
     alert("Kategorija vesti je uspesno promenjena!");
     location.reload();
   }
-
+	/*brisanje vesti po nazivu*/
   obrisi(naziv):void{
     this.service.obrisiVest(naziv).subscribe(data => {
     });

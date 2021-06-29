@@ -28,7 +28,7 @@ export class AdminNotifComponent implements OnInit {
   novaNotif: Notification = null;
 
   
-
+/*dohvati notifikacije*/
   dohvatiSveNotifikacije():void{
     this.service.dohvatiSvaObavestenja().subscribe(data => {
       this.notifications = JSON.parse(JSON.stringify(data));
@@ -46,7 +46,7 @@ export class AdminNotifComponent implements OnInit {
     this.router.navigate(['/admin_obavestenja'])
   }
 
-
+/*cuvanje notifikacije*/
   sacuvajNotifikaciju(): void{
     if (this.naziv!="" && this.datum!= "" && this.tekst!=""){
       this.novaNotif = new Notification();
